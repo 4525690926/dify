@@ -220,3 +220,15 @@ To protect your privacy, please avoid posting security issues on GitHub. Instead
 ## License
 
 This repository is licensed under the [Dify Open Source License](LICENSE), based on Apache 2.0 with additional conditions.
+
+
+<!-- 拉取原项目更新 -->
+# 拉取upstream的所有分支
+git fetch upstream main
+
+# 将upstream的main分支合并到本地main
+git checkout main
+git merge upstream/main
+
+# 推送到fork
+git push origin main
