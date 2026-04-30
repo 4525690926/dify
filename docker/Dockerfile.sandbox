@@ -1,0 +1,29 @@
+FROM langgenius/dify-sandbox:0.2.15
+
+USER root
+
+RUN cat <<'EOF' > /etc/apt/sources.list.d/debian.sources
+Types: deb
+URIs: http://mirrors.ustc.edu.cn/debian
+Suites: trixie trixie-updates
+Components: main
+Signed-By: /usr/share/keyrings/debian-archive-keyring.gpg
+
+Types: deb
+URIs: http://mirrors.ustc.edu.cn/debian-security
+Suites: trixie-security
+Components: main
+Signed-By: /usr/share/keyrings/debian-archive-keyring.gpg
+EOF
+
+RUN apt-get update && \
+    apt-get install -y gcc g++ python3-dev python3-pip && \
+    rm -rf /var/lib/apt/lists/*
+
+# 删除默认的 sources.list，防止干扰
+RUN rm -f /etc/apt/sources.list && \
+    apt-get update && \
+    apt-get install -y gcc g++ python3-dev python3-pip && \
+    rm -rf /var/lib/apt/lists/*
+
+USER sandbox

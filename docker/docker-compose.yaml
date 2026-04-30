@@ -992,7 +992,10 @@ services:
 
   # The DifySandbox
   sandbox:
-    image: langgenius/dify-sandbox:0.2.15
+    # image: langgenius/dify-sandbox:0.2.15
+    build:
+      context: .
+      dockerfile: Dockerfile.sandbox
     restart: always
     environment:
       # The DifySandbox configurations
